@@ -1,3 +1,7 @@
+# Project-specific ignore files
+dist
+src
+store
 
 # Created by https://www.gitignore.io/api/macos,windows
 
