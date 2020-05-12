@@ -1,4 +1,4 @@
-# Subset Font Workbench
+# Japanese Font Subsetter
 
 ## Setup
 
