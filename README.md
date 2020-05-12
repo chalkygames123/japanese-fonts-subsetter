@@ -1,10 +1,11 @@
 # Subset Font Workbench
 
-## Prerequisites
+## Setup
 
-- [fontTools](https://github.com/fonttools/fonttools)
-- [Brotli](https://github.com/google/brotli/tree/master/python)
+```shell
+$ pipenv install
+```
 
 ## Usage
 
-Put original font files into the `src` directory, then just run `./generate.sh`.
+Put your font files into the `src` directory and then just run: `pipenv run ./generate.sh`.
