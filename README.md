@@ -10,7 +10,7 @@ $ pipenv install
 
 ## Usage
 
-Put your font files into the `src` directory and just run: `pipenv run ./generate.sh`.
+Put your font files into the `src` directory and just run: `pipenv run ./make.sh`.
 
 NOTE: By default, the glyphs included in the subset are:
 
