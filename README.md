@@ -2,6 +2,10 @@
 
 > An easy way to subset Japanese fonts
 
+## Prerequisites
+
+Make sure you have [Pipenv](https://pipenv.pypa.io/) installed.
+
 ## Setup
 
 ```shell
