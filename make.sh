@@ -1,5 +1,7 @@
 #!/bin/sh
 
+cd `dirname $0`
+
 for file in `\find src -type f -name "*.otf" -or -name "*.ttf"`
 do
   output_path=`\echo $file | \sed "s/^src\//dist\//"`
