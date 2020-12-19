@@ -14,14 +14,14 @@ $ pipenv install
 
 ## Usage
 
-Put your font files into the `src` directory and then run: `pipenv run ./make.sh`.
+Put the font files yout want to subset into the `src` directory and then run: `pipenv run ./make.sh`.
 
-Note that by default the glyphs included in the subsets are:
+Note that by default the subsets include:
 
 - All single-byte characters in Shift_JIS except control characters
 - All double-byte characters in Shift_JIS except JIS level-2, level-3 and level-4 kanji
 
-If you want to customize which glyph to include in the subset, edit the `chars.txt`.
+If you want to change this, edit the `chars.txt`.
 
 ## References
 
