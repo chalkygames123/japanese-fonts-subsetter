@@ -1,6 +1,6 @@
 # Japanese Font Subsetter
 
-> An easy way to subset Japanese fonts
+> Easy way to subset Japanese fonts
 
 ## Prerequisites
 
