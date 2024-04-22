@@ -1,30 +1,31 @@
-# Japanese Font Subsetter
+# Japanese Fonts Subsetter
 
-> Easy way to subset Japanese fonts
+> Minimal script to subset and compress Japanese fonts for web use
 
 ## Prerequisites
 
-Make sure you have [Pipenv](https://pipenv.pypa.io/) installed.
+- You have [Poetry](https://python-poetry.org/) installed.
 
-## Setup
+## Getting started
 
-```shell
-$ pipenv install
-```
+Run `poetry install` to install dependencies.
 
 ## Usage
 
-Put the font files yout want to subset into the `src` directory and then run: `pipenv run ./make.sh`.
+1. Create a `src/` directory and then put the font files you want to subset there.
+2. Run `poetry run ./make.sh` to subset the font files.
 
-Note that by default the subsets include:
-
-- All single-byte characters in Shift_JIS except control characters
-- All double-byte characters in Shift_JIS except JIS level-2, level-3 and level-4 kanji
-
-If you want to change this, edit the `chars.txt`.
+> [!NOTE]
+> Note that by default the subsets include:
+>
+> - all single-byte characters in Shift_JIS except control characters.
+> - all double-byte characters in Shift_JIS except JIS level-2, level-3 and level-4 kanji.
+>
+> You can edit `chars.txt` to include or exclude characters you want.
 
 ## References
 
+<!-- prettier-ignore -->
 - [OpenTypeフォントの軽量化と自動カーニング - ureta.net](https://ureta.net/2017/02/tool_fonttools/)
 - [文字コード表 シフトJIS(Shift_JIS)](http://charset.7jp.net/sjis.html)
 - [JIS第1水準の漢字一覧表](http://kanjitisiki.com/jis1/)

@@ -1,21 +1,26 @@
-#!/bin/sh
+#!/bin/bash
 
-cd `dirname $0`
+cd "$(dirname "$0")" || return
 
-for file in `\find src -type f -name "*.otf" -or -name "*.ttf"`
-do
-  output_path=`\echo $file | \sed "s/^src\//dist\//"`
-  ext=${file##*.}
+find src \( -name "*.otf" -or -name "*.ttf" \) -type f -print0 | while IFS= read -r -d "" file; do
+	output_path="${file/src/dist}"
+	ext=${file##*.}
 
-  \mkdir -p `\dirname $output_path`
+	mkdir -p "$(dirname "$output_path")"
 
-  if [ $ext = otf ]; then
-    \pyftsubset $file --text-file=chars.txt --layout-features='palt vert' --output-file=$output_path;
-    \pyftsubset $file --text-file=chars.txt --layout-features='palt vert' --flavor=woff --output-file=${output_path%.*}.woff;
-    \pyftsubset $file --text-file=chars.txt --layout-features='palt vert' --flavor=woff2 --output-file=${output_path%.*}.woff2;
-  elif [ $ext = ttf ]; then
-    \pyftsubset $file --text-file=chars.txt --layout-features='kern vert' --output-file=$output_path;
-    \pyftsubset $file --text-file=chars.txt --layout-features='kern vert' --flavor=woff --output-file=${output_path%.*}.woff;
-    \pyftsubset $file --text-file=chars.txt --layout-features='kern vert' --flavor=woff2 --output-file=${output_path%.*}.woff2;
-  fi
+	if [[ $ext = otf ]]; then
+		(
+			pyftsubset "$file" --text-file=chars.txt --output-file="$output_path" --layout-features='palt vert' &
+			pyftsubset "$file" --text-file=chars.txt --output-file="${output_path%.*}.woff" --flavor=woff --layout-features='palt vert' &
+			pyftsubset "$file" --text-file=chars.txt --output-file="${output_path%.*}.woff2" --flavor=woff2 --layout-features='palt vert' &
+			wait
+		)
+	elif [[ $ext = ttf ]]; then
+		(
+			pyftsubset "$file" --text-file=chars.txt --output-file="$output_path" --layout-features='kern vert' &
+			pyftsubset "$file" --text-file=chars.txt --output-file="${output_path%.*}.woff" --flavor=woff --layout-features='kern vert' &
+			pyftsubset "$file" --text-file=chars.txt --output-file="${output_path%.*}.woff2" --flavor=woff2 --layout-features='kern vert' &
+			wait
+		)
+	fi
 done
