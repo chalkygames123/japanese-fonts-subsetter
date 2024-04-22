@@ -12,8 +12,9 @@ Run `poetry install` to install dependencies.
 
 ## Usage
 
-1. Create a `src/` directory and then put the font files you want to subset there.
-2. Run `poetry run ./make.sh` to subset the font files.
+First, create a `src/` directory and put the font files you want to subset there.
+
+Then run `poetry run ./subset` to subset the font files or `poetry run ./compress` to compress the font files.
 
 > [!NOTE]
 > Note that by default the subsets include:

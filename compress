@@ -1,0 +1,26 @@
+#!/bin/bash
+
+cd "$(dirname "$0")" || return
+
+find src \( -name "*.otf" -or -name "*.ttf" \) -type f -print0 | while IFS= read -r -d "" file; do
+	output_path="${file/src/dist}"
+	ext=${file##*.}
+
+	mkdir -p "$(dirname "$output_path")"
+
+	if [[ $ext = otf ]]; then
+		(
+			pyftsubset "$file" "*" --output-file="$output_path" &
+			pyftsubset "$file" "*" --output-file="${output_path%.*}.woff" --flavor=woff &
+			pyftsubset "$file" "*" --output-file="${output_path%.*}.woff2" --flavor=woff2 &
+			wait
+		)
+	elif [[ $ext = ttf ]]; then
+		(
+			pyftsubset "$file" "*" --output-file="$output_path" &
+			pyftsubset "$file" "*" --output-file="${output_path%.*}.woff" --flavor=woff &
+			pyftsubset "$file" "*" --output-file="${output_path%.*}.woff2" --flavor=woff2 &
+			wait
+		)
+	fi
+done
